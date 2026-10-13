@@ -8,12 +8,19 @@ public class Section implements Element{
         this.title=title;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void render(){
+        System.out.println(title);
+    }
+
     @Override
-    public void print(){
-        System.out.println( title);
-        for(Element element : list)
-        {
-            element.print();
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+        for (Element element : list) {
+            element.accept(visitor);
         }
     }
 

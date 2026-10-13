@@ -14,13 +14,17 @@ public class Paragraph implements Element{
         this.textAlignment = textAlignment;
     }
 
-    @Override
-    public void print(){
+    public void render(){
         if (textAlignment == null) {
             System.out.println("Paragraph: "+ text);
         } else {
             textAlignment.render(this, new Context(40));
         }
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 
     @Override

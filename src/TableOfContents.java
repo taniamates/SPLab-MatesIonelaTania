@@ -5,10 +5,14 @@ public class TableOfContents implements Element{
         this.text=text;
     }
 
-@Override
-    public void print(){
-        System.out.println("Table of contents: /n"+text);
-}
+    public void render(){
+        System.out.println("Table of contents: \n"+text);
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+    }
 
     @Override
     public void add(Element element){

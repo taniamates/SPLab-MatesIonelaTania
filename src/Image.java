@@ -12,10 +12,13 @@ public class Image implements Element{
         }
     }
 
+    public void render(){
+        System.out.println("image: "+ url);
+    }
 
     @Override
-    public void print(){
-        System.out.println("image: "+ url);
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 
     @Override

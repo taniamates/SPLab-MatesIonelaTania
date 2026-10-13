@@ -4,9 +4,14 @@ private String something;
     public Table(String something) {
         this.something = something;
     }
-    @Override
-    public void print(){
+
+    public void render(){
         System.out.println("table: "+ something);
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 
     @Override

@@ -1,21 +1,25 @@
 public class ImageProxy implements Element {
     private String url;
-    private Image realImage;   // imaginea adevarata; null pana cand e nevoie de ea
+    private Image realImage;
 
     public ImageProxy(String url) {
-        this.url = url;        // doar retinem numele, nu incarcam nimic
+        this.url = url;
     }
 
     private Image loadImage() {
         if (realImage == null) {
-            realImage = new Image(url);   // aici se face incarcarea lenta, o singura data
+            realImage = new Image(url);
         }
         return realImage;
     }
 
+    public void render() {
+        loadImage().render();
+    }
+
     @Override
-    public void print() {
-        loadImage().print();
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
     }
 
     @Override
