@@ -18,8 +18,27 @@ public class Main {
         cap1.accept(stats);
         stats.printStatistics();
 
+        // O carte intreaga, pentru render si cuprins
+        Book book = new Book("Carte de test");
+        book.addAuthor(new Author("Radu Pavel"));
+        book.addContent(cap1);
+
+        Section cap2 = new Section("Capitolul 2");
+        cap2.add(new Paragraph("Introducere capitol 2"));
+        Section cap21 = new Section("Capitolul 2.1");
+        cap21.add(new Paragraph("Text 2.1 a"));
+        cap21.add(new Paragraph("Text 2.1 b"));
+        cap2.add(cap21);
+        cap2.add(new Table("Table 2"));
+        book.addContent(cap2);
+
         System.out.println();
         System.out.println("Render:");
-        cap1.accept(new RenderContentVisitor());
+        book.accept(new RenderContentVisitor());
+
+        System.out.println();
+        GenerateToC tocVisitor = new GenerateToC();
+        book.accept(tocVisitor);
+        tocVisitor.getToC().render();
     }
 }
