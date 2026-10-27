@@ -1,3 +1,5 @@
+package ro.uvt.models;
+
 public class BookStatistics implements Visitor {
     private int imagesCount = 0;
     private int tablesCount = 0;

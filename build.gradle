@@ -13,15 +13,6 @@ java {
     targetCompatibility = JavaVersion.VERSION_17
 }
 
-// Codul nostru sta direct in folderul src (nu in src/main/java)
-sourceSets {
-    main {
-        java {
-            srcDirs = ['src']
-        }
-    }
-}
-
 // Clasa de pornire a aplicatiei Spring
 springBoot {
     mainClass = 'ro.uvt.MySpringApplication'
@@ -29,4 +20,9 @@ springBoot {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // Lab 5-6: salvarea in baza de date
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-h2console'
+    runtimeOnly 'com.h2database:h2'
 }

@@ -1,3 +1,5 @@
+package ro.uvt.models;
+
 public class Context {
     private final int lineWidth;   // cate caractere are un rand
 

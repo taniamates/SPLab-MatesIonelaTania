@@ -1,3 +1,5 @@
+package ro.uvt.models;
+
 import java.util.ArrayList;
 import java.util.List;
 
