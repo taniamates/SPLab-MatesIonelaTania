@@ -1,3 +1,5 @@
+package ro.uvt.models;
+
 public class RenderContentVisitor implements Visitor {
     @Override
     public void visit(Book book) { book.render(); }
