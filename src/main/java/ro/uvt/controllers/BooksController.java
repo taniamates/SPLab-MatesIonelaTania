@@ -17,16 +17,20 @@ import ro.uvt.models.ImageProxy;
 import ro.uvt.models.Paragraph;
 import ro.uvt.models.Section;
 import ro.uvt.models.Table;
+import ro.uvt.observer.AllBooksSubject;
 import ro.uvt.persistence.CrudRepository;
 
 @RestController
 @RequestMapping("/books")
 public class BooksController {
     private final CrudRepository<Book, Integer> booksRepository;
+    private final AllBooksSubject allBooksSubject;
 
     // Spring injecteaza adapter-ul (singura clasa care implementeaza CrudRepository<Book, Integer>)
-    public BooksController(CrudRepository<Book, Integer> booksRepository) {
+    // si subject-ul din lab 7
+    public BooksController(CrudRepository<Book, Integer> booksRepository, AllBooksSubject allBooksSubject) {
         this.booksRepository = booksRepository;
+        this.allBooksSubject = allBooksSubject;
     }
 
     // GET http://localhost:8080/books
@@ -53,6 +57,7 @@ public class BooksController {
             }
         }
         book = booksRepository.save(book);
+        allBooksSubject.add(book);          // lab 7: anunta toate paginile deschise
         return ResponseEntity.status(HttpStatus.CREATED).body(book);
     }
 
@@ -97,6 +102,7 @@ public class BooksController {
         book.addContent(cap2);
 
         book = booksRepository.save(book);
+        allBooksSubject.add(book);          // lab 7: anunta toate paginile deschise
         return ResponseEntity.status(HttpStatus.CREATED).body(book);
     }
 }
